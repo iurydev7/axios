@@ -3,12 +3,12 @@
         {
             "id": 1,
             "nome": "Carlos",
-            "e-mail":"carlos@gmail.com"
+            "email":"carlos@gmail.com"
         },
         {
             "id": 2,
             "nome": "Mariana",
-            "e-mail": "mariana@gmail.com"
+            "email": "mariana@gmail.com"
         }
     ],
     "products": [
