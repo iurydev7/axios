@@ -1,0 +1,46 @@
+const api = axios.create({
+    baseURL: "http://localhost:3000/"
+});
+
+const section = "users";
+let record = [];
+
+const $ = selector => document.querySelector(selector);
+
+async function listar(endpoint = `${section}`) {
+    try {
+        const { data } = await api.get(endpoint);
+        return data;
+    } catch (error) {
+        console.log("Erro na consulta: " + error.message);
+    }
+}
+
+function renderizar() {
+    const isUsers = section === "users";
+    $('#page-title').textContent = isUsers ? "Usuários" : "Produtos";
+    $('#table-head').innerHTML = isUsers 
+        ? '<tr><th>ID</th><th>Nome</th><th>E-mail</th></tr>' 
+        : '<tr><th>ID</th><th>Produtos</th><th>Preço</th></tr>';
+    $('#table-body').innerHTML = record.map(
+        item => `
+            <tr>
+                <td>${item.id ?? "-"}</td>
+                <td>${item.nome ?? "-"}</td>
+                <td>${item.email ?? "-"}</td>
+            </tr>`
+    );
+    
+}
+
+async function carregar() {
+    record = await listar();
+}
+
+async function carregar() {
+    record = await listar();
+    renderizar();
+    
+}
+
+carregar();
